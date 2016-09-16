@@ -17,7 +17,25 @@
 <script>
 
 
-     var mediaActive = new MediaActive();
+    var mediaActive = new MediaActive();
+
+    var responsiveActions = {
+        'screen and (max-device-width: 480px) and (orientation: portrait)': function () {
+
+        },
+        'screen and (max-device-width: 480px)': function () {
+
+        },
+        'screen and (min-device-width: 481px)': function () {
+
+        }
+    }
+
+    var mediaActive = new MediaActive(responsiveActions);
+    mediaActive.start();
+    // mediaActive.stop() // maybe you need to disable ALL for some
+    // reason?? Allow args for specific media rule disabling??
+
 
 </script>
 </body>
