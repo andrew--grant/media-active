@@ -1,17 +1,15 @@
 var responsiveActions = function (actions) {
     for (var key in actions) {
         if (actions.hasOwnProperty(key)) {
-            var media = window.matchMedia(key);
-            media.actionKey = key;
-            // initial page load
-            if (media.matches) {
-                actions[key](true);
+            var mediaQueryList = window.matchMedia(key);
+            mediaQueryList.actionKey = key;
+            if (mediaQueryList.matches) {
+                actions[key](true, mediaQueryList);
             }
-            // event driven
             actions[key].funcWrap = function (mediaQueryList) {
                 actions[this.actionKey](mediaQueryList.matches, mediaQueryList);
             }
-            media.addListener(actions[key].funcWrap);
+            mediaQueryList.addListener(actions[key].funcWrap);
         }
     }
 }
