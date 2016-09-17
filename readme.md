@@ -2,13 +2,15 @@
 
 ### How it works
 
-This very small utility script aims to do just a couple of things. 
+This tiny utility revolves around the use of window.matchMedia.   
 
-It can help you keep all of your media query breakpoints together using a succinct 'key/value' syntax. The key is your media query. The value is a function that you want to execute when this media query is activated and/or deactivated.
+I wanted a way to keep all my media query breakpoints together using a succinct 'key/value' format. Where *key* is a media query, and *value* is an action (function) I want to run when this media query is matched/unmatched. I also wanted to have my media queries checked upon page load (MediaQueryList.matches) as well as on an event driven basis (MediaQueryList.addListener). This is basically all this script does.
 
-The media queries are checked upon page load (MediaQueryList.matches) and on an event driven basis (MediaQueryList.addListener). Your action wil be passed a truthy value that will tell you if this media query was just activated or deactivated. If you need the original mediaQueryList object, it is available as the second argument.
+#### Usage
 
-The example below should clarify how you might go about using this.
+Your actions wil be passed a truthy value, this value will tell you if the associated media query was just activated or deactivated. Should you need the original mediaQueryList object, as passed to event handlers when working directly with MediaQueryList.addListener, you will find it passed as the second argument.
+
+The key is a media query. The value is a function that will execute when this media query is activated and/or deactivated. The example below should clarify how you might go about using this.
 
     var actions = {
 
@@ -37,4 +39,4 @@ The example below should clarify how you might go about using this.
     responsiveActions(actions);
 
 
-Of course, you can be more creative than this.
+Too easy. Of course, you can be more creative than this.
