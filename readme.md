@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Responsive Actions Example</title>
-    <script src="responsive-actions.js"></script>
-</head>
-<body>
-<h1>Responsive Actions Example</h1>
-<script>
+## hkjhfjkhjksdhfjshdfk
+
+### hjkhjkhjhkjhjk
+
+
 
     var actions = {
 
@@ -36,8 +31,4 @@
     responsiveActions(actions);
 
 
-</script>
-
-
-</body>
-</html>
+afdfdsfdf  fsf sfsdfsdf fsfsfsdf
