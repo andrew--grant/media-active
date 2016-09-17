@@ -2,15 +2,17 @@
 
 ### What is it?
 
-It's basically just a small (228 bytes) utility that sits atop window.matchMedia. If you want to run code when a given media query is matched (and/or unmatched), you might find this useful.
+It's a small (228 bytes) utility that sits atop window.matchMedia. If you want to run some JavaScript code when a given media query is matched (and/or unmatched), you might find it useful.
 
 ### Why does it exist?
 
-I wanted a way to keep all of my code oriented media queries together using a succinct 'key/value' format (where *key* is a media query, and *value* is a function (action) I want to perform when the given media query is matched/unmatched. Generally you want to test for media query matches upon initial page load and on an ongoing event driven basis - so this script also takes care of wiring up to window.matchMedia for both cases.  
+I wanted a way to keep all of my code oriented media queries together using a succinct key/value format (where *key* is a media query, and *value* is a function (action) I want to perform when the given media query is matched/unmatched. Generally, you want to test for media query matches upon initial page load and on an ongoing event driven basis, this takes care of wiring up to window.matchMedia for both cases.  
 
 ### How do I use it?
 
-Your actions wil be passed a truthy value, this value will tell you if the associated media query was just activated or deactivated. Should you need the original mediaQueryList object (as in, the object that is passed to event handlers when working directly with MediaQueryList.addListener) you can do so via the second argument.
+Create an object that consists of keys (your media queries) and values (your action functions). Call the *responsiveActions* function, passing this object.  Your action functions will be triggered when the associated media queries are matched and unmatched. A truthy value will be passed - you can use this to see if the associated media query was just matched or unmatched. 
+
+Should you need the original mediaQueryList object (as in, the object that is passed to event handlers when working directly with MediaQueryList.addListener) you can do so via your action functions' second argument.
 
 The example below should clarify how 'responsive actions' work.
 
