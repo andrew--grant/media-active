@@ -1,51 +1,78 @@
-var MediaActive = function (mediaChangeHandler) {
+var MediaActive = function (responsiveActions, validate) {
 
-    // tips:
-    // http://stackoverflow.com/questions/15696124/accessing-css-media-query-rules-via-javascript-dom
-    // http://www.javascriptkit.com/dhtmltutors/cssmediaqueries4.shtml
-    // Browser compatibility wise, window.matchMedia() is supported in FF6+, IE10+, Chrome/ Safari,
-    // // and Opera 12+. To test for browser support, you can simply test for support for the property window.matchMedia.
-
-    this.sheets = document.styleSheets;
-    var numSheets = this.sheets.length;
-    var MediaQueryListCollection = {};// contains MediaQueryList objects
-    var mediaChange = function (mql) {
-    };
-
-    if (mediaChangeHandler) {
-        mediaChange = mediaChangeHandler;
+    for (var key in responsiveActions) {
+        if (responsiveActions.hasOwnProperty(key)) {
+            var media = window.matchMedia(key);
+            responsiveActions[key].funcWrap = function (mediaQueryList) {
+                responsiveActions[this.actionKey](mediaQueryList.matches);
+            }
+            media.actionKey = key;
+            media.addListener(responsiveActions[key].funcWrap);
+        }
     }
 
-    // for all attache style sheets, inc user agent
-    for (var i = 0; i < numSheets; i += 1) {
+    if (validate) {
+        // Are we using an action that has no corresponding
+        // media rule in style sheets? Warn developer.
 
-        var rules = this.sheets[i].cssRules;
-        var numRules = rules == null ? 0 : rules.length;
+        // I want to know if there is an action that matches up with a media rule in any style sheets!!
 
-        for (var j = 0; j < numRules; j += 1) {
-            if (rules[j].constructor === CSSMediaRule) {
-                // MediaQueryListCollection[j] = window.matchMedia(rules[j].media.mediaText);
-                // MediaQueryListCollection[j].addListener(mediaChange);
-                // mediaChange(mqls[j]);
-                console.log(rules[j].media.mediaText);
+        // screen and (min-width: 500px) and (max-width: 799px)
+        // vs
+        // screen and (max-width: 799px) and (min-width: 500px)
+
+        // space separate and compare
+
+        var sheets = document.styleSheets;
+
+        for (var i = 0; i < sheets.length; i += 1) {
+            var rules = sheets[i].cssRules;
+            console.log(sheets[i]);
+            console.log(sheets[i].href);
+            for (var j = 0; j < rules.length; j += 1) {
+                if (rules[j].constructor === CSSMediaRule) {
+                    console.log(rules[j].media);
+
+                }
             }
         }
     }
+
+    //console.log(self.responsiveActions);
+    //
+    //for (var i = 0; i < this.numSheets; i += 1) {
+    //
+    //    var rules = this.sheets[i].cssRules;
+    //    var numRules = rules == null ? 0 : rules.length;
+    //
+    //
+    //    //for (var j = 0; j < numRules; j += 1) {
+    //    //
+    //    //    if (rules[j].constructor === CSSMediaRule) {
+    //    //        console.log(rules[j]);
+    //    //        if (this.responsiveActions[rules[j].media.mediaText]) {
+    //    //
+    //    //
+    //    //            console.log("?");
+    //    //
+    //    //            this.MediaQueryListCollection[rules[j].media.mediaText] = window.matchMedia(rules[j].media.mediaText);
+    //    //            this.MediaQueryListCollection[rules[j].media.mediaText].addListener(this.responsiveActions[rules[j].media.mediaText]);
+    //    //        }
+    //    //    }
+    //    //}
+    //
+    //}
+
+
+    // todo: what about if multiple media queries are the
+    // same, but specified in different places/files??
+
+    //todo: can we check if specified keys exist in CSS
+    // and warn/fail if not??
+
+    // todo: specialise in adding content strings?? woks like a lang pack??
+
+
 }
-
-MediaActive.prototype.registerMediaRange = function (range, callback) {
-    // both entering and leaving specified range
-}
-
-MediaActive.prototype.registerMediaRangeActivated = function (range, callback) {
-    // entering specified range
-}
-
-
-MediaActive.prototype.registerMediaRangeDeactivated = function (range, callback) {
-    // leaving specified range
-}
-
-
 
 

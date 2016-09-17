@@ -16,25 +16,29 @@
 </ul>
 <script>
 
-
-    var mediaActive = new MediaActive();
-
     var responsiveActions = {
-        'screen and (max-device-width: 480px) and (orientation: portrait)': function () {
+
+        'screen and (min-width: 500px) and (max-width: 799px)': function (matches) {
+
+            if (matches) {
+               // console.log("500 to 799 is now active");
+            }else{
+              //  console.log("500 to 799 is no longer active");
+            }
 
         },
-        'screen and (max-device-width: 480px)': function () {
 
-        },
-        'screen and (min-device-width: 481px)': function () {
+        'screen and (min-width: 900px)': function (matches) {
+
+            if (matches) {
+               // console.log("900 plus");
+            }
 
         }
+
     }
 
-    var mediaActive = new MediaActive(responsiveActions);
-    mediaActive.start();
-    // mediaActive.stop() // maybe you need to disable ALL for some
-    // reason?? Allow args for specific media rule disabling??
+    var mediaActive = new MediaActive(responsiveActions, true);
 
 
 </script>
