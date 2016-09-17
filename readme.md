@@ -6,7 +6,7 @@ It's a small (228 bytes) utility that sits atop window.matchMedia. If you want t
 
 ### Why does it exist?
 
-I wanted a way to keep all of my code oriented media queries together using a succinct key/value format (where *key* is a media query, and *value* is a function (action) I want to perform when the given media query is matched/unmatched. Generally, you want to test for media query matches upon initial page load and on an ongoing event driven basis, this takes care of wiring up to window.matchMedia for both cases.  
+I wanted a way to keep all of my code oriented media queries together using a succinct key/value format (where *key* is a media query, and *value* is a function (action) I want to execute when the given media query is matched/unmatched. Generally, you want to test for media query matches upon initial page load and on an ongoing event driven basis, this takes care of wiring up to window.matchMedia for both cases.  
 
 ### How do I use it?
 
