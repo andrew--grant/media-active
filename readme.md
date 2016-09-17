@@ -1,10 +1,10 @@
-## Responsive Actions - A handy utility to simplify reacting to media queries
+## A handy utility to simplify reacting to media queries within JavaScript
 
 ### What is it?
 
-This tiny utility revolves around the use of window.matchMedia.   
+It's basically just a small utility that makes use of window.matchMedia. If you want to do something in code when a CSS media query is activated/deactivated, you might find it useful.
 
-I wanted a way to keep all my media query breakpoints together using a succinct 'key/value' format. Where *key* is a media query, and *value* is an action (function) I want to run when this media query is matched/unmatched. I also wanted to have my media queries checked upon page load (MediaQueryList.matches) as well as on an event driven basis (MediaQueryList.addListener). This is basically all this script does.
+I wanted a way to keep all my media query breakpoints together using a succinct 'key/value' format (where *key* is a media query, and *value* is an action I want to execute when this media query is matched/unmatched). I also wanted to have my media queries checked upon page load (MediaQueryList.matches) as well as on an event driven basis (MediaQueryList.addListener).
 
 ### How do I use it?
 
